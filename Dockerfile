@@ -4,26 +4,11 @@ FROM tomcat:latest
 # Remove the default ROOT application
 RUN rm -rf /usr/local/tomcat/webapps/ROOT
 
-# Debug: List contents of the target directory
+# Debug: List contents of the webapps directory
 RUN ls -lR /usr/local/tomcat/webapps/
 
 # Copy all WAR files from the target directory into the webapps directory of Tomcat
-COPY target/**/*.war /usr/local/tomcat/webapps/
-
-# Optionally, expose the default Tomcat port (8080) if needed
-EXPOSE 8080
-,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,
-# Use an official Tomcat runtime as the base image
-FROM tomcat:latest
-
-# Remove the default ROOT application
-RUN rm -rf /usr/local/tomcat/webapps/ROOT
-
-# Debug: List contents of the target directory
-RUN ls -lR /usr/local/tomcat/webapps/
-
-# Copy all WAR files from the target directory into the webapps directory of Tomcat
-COPY target/**/*.war /usr/local/tomcat/webapps/
+COPY /home/azureuser/Amazonadi/Amazon-Web/target/*.war /usr/local/tomcat/webapps/
 
 # Optionally, expose the default Tomcat port (8080) if needed
 EXPOSE 8080
